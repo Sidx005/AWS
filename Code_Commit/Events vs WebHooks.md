@@ -459,3 +459,216 @@ Approve / Reject    → codepipeline:PutApprovalResult
 <img width="688" height="389" alt="image" src="https://github.com/user-attachments/assets/c315eafd-1615-4d5e-bd79-14f0c145f225" />
 
 <img width="715" height="386" alt="image" src="https://github.com/user-attachments/assets/8eb70acf-46d0-445e-ab9f-0d4531f98096" />
+
+
+This diagram explains **how a Manual Approval stage works in AWS CodePipeline**, especially the **SNS notification flow and IAM permissions**.
+
+## 1. The CodePipeline flow
+
+At the top:
+
+```text
+CodeCommit
+    ↓ new commit
+CodeBuild
+    ↓ trigger
+Manual Approval ⏸️
+    ↓ deploy (after approval)
+CodeDeploy
+```
+
+So the normal CI/CD flow is:
+
+1. Developer pushes a new commit to **CodeCommit**
+2. **CodeBuild** builds/tests the application
+3. Pipeline reaches **Manual Approval**
+4. Pipeline pauses ⏸️
+5. A human approves or rejects it
+6. If approved → deployment continues to **CodeDeploy**
+
+---
+
+# 2. What happens when Manual Approval is reached?
+
+The diagram shows:
+
+```text
+Manual Approval
+      │
+      │ trigger
+      ▼
+     SNS
+      │
+      │ email
+      ▼
+   IAM User
+```
+
+When CodePipeline reaches the Manual Approval action:
+
+* It triggers an **SNS topic**
+* SNS can send an **email notification**
+* The responsible user receives the notification
+* The user goes to AWS and approves/rejects the pipeline
+
+Example:
+
+```text
+🚨 Email:
+"Pipeline MyFirstPipeline is waiting for approval"
+```
+
+---
+
+# 3. The IAM User approves the pipeline
+
+The IAM user then interacts with the:
+
+```text
+Manual Approval Stage
+```
+
+The user can choose:
+
+```text
+Approve ✅
+```
+
+or
+
+```text
+Reject ❌
+```
+
+If approved:
+
+```text
+Manual Approval
+       ↓
+Pipeline continues
+       ↓
+CodeDeploy
+       ↓
+Application deployed 🚀
+```
+
+---
+
+# 4. Important Exam Point ⭐
+
+The diagram highlights:
+
+```text
+Owner = AWS
+Action = Manual
+```
+
+This is how the Manual Approval action is categorized in CodePipeline.
+
+### Remember:
+
+| Property        | Value  |
+| --------------- | ------ |
+| **Owner**       | AWS    |
+| **Action Type** | Manual |
+
+So if an exam asks:
+
+> What is the action type used for human approval in CodePipeline?
+
+Answer:
+
+```text
+Manual
+```
+
+---
+
+# 5. IAM Permissions Required
+
+The right side of the image shows the IAM policy permissions required by the user.
+
+### Permission 1: View the pipeline
+
+```json
+"Action": "codepipeline:GetPipeline*"
+```
+
+This allows the IAM user to access/view the pipeline.
+
+The resource is restricted to something like:
+
+```text
+MyFirstPipeline
+```
+
+---
+
+### Permission 2: Approve or Reject
+
+```json
+"Action": "codepipeline:PutApprovalResult"
+```
+
+This is the **most important permission**.
+
+It allows the IAM user to submit an approval result:
+
+```text
+Approve ✅
+```
+
+or:
+
+```text
+Reject ❌
+```
+
+The permission is applied to the specific approval action:
+
+```text
+MyFirstPipeline/ApprovalStage/MyApprovalAction
+```
+
+---
+
+# Complete Flow 🧠
+
+```text
+Developer
+    │
+    │ New Commit
+    ▼
+CodeCommit
+    │
+    ▼
+CodeBuild
+    │
+    ▼
+Manual Approval ⏸️
+    │
+    ├── Trigger SNS
+    │       │
+    │       ▼
+    │     Email 📧
+    │       │
+    │       ▼
+    │    IAM User 👤
+    │
+    │ User clicks Approve
+    │
+    ▼
+CodeDeploy 🚀
+```
+
+## The easiest way to remember it
+
+> **SNS tells the person that approval is needed, and the IAM user needs `codepipeline:PutApprovalResult` to approve or reject the pipeline.**
+
+And for the exam:
+
+```text
+Manual Approval Action
+Owner  → AWS
+Action → Manual
+```
