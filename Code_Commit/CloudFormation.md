@@ -775,3 +775,7 @@ CodePipeline
 ```
 
 This pattern is especially useful because **CloudFormation lets your CI/CD pipeline create, test, destroy, and deploy entire infrastructure environments automatically**.
+
+
+
+<img width="152" height="218" alt="image" src="https://github.com/user-attachments/assets/2c2d257f-b63f-4d45-b25a-d4c4837ac871" />
