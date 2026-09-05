@@ -779,3 +779,7 @@ This pattern is especially useful because **CloudFormation lets your CI/CD pipel
 
 
 <img width="152" height="218" alt="image" src="https://github.com/user-attachments/assets/2c2d257f-b63f-4d45-b25a-d4c4837ac871" />
+
+
+<img width="475" height="276" alt="image" src="https://github.com/user-attachments/assets/2e1f944d-42f0-4cfe-a3a2-e7898afa33f6" />
+
