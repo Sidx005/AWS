@@ -47,3 +47,10 @@ Enter “index.html” as the file name and add the following content in the edi
 
 
 <img width="1366" height="661" alt="image" src="https://github.com/user-attachments/assets/bc7b4e4c-e7b2-411c-a805-29992876afeb" />
+
+
+
+# Adding a buildpsec.yml file
+Create a buildspec.yaml file that will contain the pre-build,during build,post-build, storage artifacts to be performed on the server during the project build.
+
+
