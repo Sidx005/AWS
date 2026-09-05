@@ -41,3 +41,9 @@ Enter “index.html” as the file name and add the following content in the edi
 
 
 <img width="1366" height="661" alt="image" src="https://github.com/user-attachments/assets/3c3b07f4-3af6-4221-847d-5787d149a0d5" />
+
+
+<img width="1366" height="661" alt="image" src="https://github.com/user-attachments/assets/81d0a7c5-d4e8-427e-afb5-be30d8af9a9b" />
+
+
+<img width="1366" height="661" alt="image" src="https://github.com/user-attachments/assets/bc7b4e4c-e7b2-411c-a805-29992876afeb" />
