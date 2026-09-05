@@ -1,3 +1,93 @@
+# Beanstalk
+# What is AWS Elastic Beanstalk? 🌱
+
+**AWS Elastic Beanstalk** is a service that makes it easy to **deploy and run web applications** without manually managing all the underlying infrastructure.
+
+You provide your application code, and Beanstalk handles much of the infrastructure setup for you.
+
+## Simple idea
+
+```text
+Your Application Code
+        ↓
+Elastic Beanstalk
+        ↓
+Automatically sets up infrastructure
+        ↓
+EC2 + Load Balancer + Auto Scaling + Monitoring
+        ↓
+Your Application Running 🚀
+```
+
+### Example
+
+Suppose you have a Node.js application:
+
+```text
+app.js
+package.json
+index.html
+```
+
+Instead of manually:
+
+1. Creating an EC2 instance
+2. Installing Node.js
+3. Configuring the server
+4. Setting up Auto Scaling
+5. Configuring a Load Balancer
+
+You can simply upload your application to **Elastic Beanstalk**.
+
+---
+
+## What Beanstalk manages
+
+Depending on your configuration, it can provision:
+
+* **EC2 instances** → Run your application
+* **Auto Scaling** → Add/remove servers based on demand
+* **Elastic Load Balancer** → Distribute traffic
+* **CloudWatch** → Monitoring and logs
+* **Security Groups** → Control network access
+
+---
+
+## Why are you creating two environments?
+
+In your CodePipeline lecture, you created environments such as:
+
+```text
+Elastic Beanstalk Application
+│
+├── Dev Environment
+│      ↓
+│   Testing happens here
+│
+└── Prod Environment
+       ↓
+    Real production users
+```
+
+Then CodePipeline can deploy code like this:
+
+```text
+CodeCommit
+    ↓
+CodePipeline
+    ↓
+Elastic Beanstalk (Dev)
+    ↓
+Elastic Beanstalk (Prod)
+```
+
+### Easy definition for exams 📝
+
+> **AWS Elastic Beanstalk is a Platform as a Service (PaaS) that lets you quickly deploy and manage applications without worrying about the underlying infrastructure.**
+
+**In one line:** You give Beanstalk your **code**, and AWS helps manage the **servers and infrastructure needed to run it**.
+
+
 # Prerequisite for CodePipeline Hands-On: Create Elastic Beanstalk Environments
 
 Before setting up **AWS CodePipeline**, the lecture recreates an **Elastic Beanstalk application** because CodePipeline will later deploy application updates into these environments.
