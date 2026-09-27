@@ -1,3 +1,468 @@
+# Amazon S3 Versioning — Notes
+
+## 1. What is S3 Versioning?
+
+**S3 Versioning** keeps multiple versions of the same object in a bucket.
+
+Normally, when you upload a file with the same name:
+
+```text
+index.html
+   ↓
+Upload new index.html
+   ↓
+Old file overwritten
+```
+
+With versioning enabled:
+
+```text
+index.html
+   │
+   ├── Version 1
+   └── Version 2
+```
+
+The old version is retained instead of being permanently overwritten.
+
+---
+
+# 2. Enable Bucket Versioning
+
+Go to:
+
+```text
+S3
+ → Bucket
+ → Properties
+ → Bucket Versioning
+ → Edit
+ → Enable
+```
+
+Once enabled, newly uploaded/modified objects receive **Version IDs**.
+
+---
+
+# 3. Example — Updating a Website
+
+Initially:
+
+```text
+index.html
+
+I love coffee
+```
+
+Upload a new version:
+
+```text
+index.html
+
+I REALLY love coffee
+```
+
+With versioning enabled, S3 stores both:
+
+```text
+index.html
+│
+├── Version ID: null
+│   └── I love coffee
+│
+└── Version ID: abc123...
+    └── I REALLY love coffee
+```
+
+The latest version becomes the current version served by S3.
+
+---
+
+# 4. What Does `null` Version ID Mean?
+
+If an object was uploaded **before versioning was enabled**, it can have:
+
+```text
+Version ID = null
+```
+
+For example:
+
+```text
+coffee.jpg
+Version ID → null
+```
+
+After enabling versioning and uploading a new version:
+
+```text
+coffee.jpg
+│
+├── Version ID: null       ← uploaded before versioning
+└── Version ID: abc123...  ← uploaded after versioning
+```
+
+### Important
+
+> Objects uploaded before versioning was enabled don't suddenly receive a normal version ID. They can remain associated with the `null` version.
+
+---
+
+# 5. Show Object Versions
+
+In the S3 console, enable:
+
+```text
+Show versions
+```
+
+You can then see the different versions of objects.
+
+Example:
+
+```text
+index.html
+│
+├── Version ID: abc123
+└── Version ID: xyz789
+```
+
+Without **Show versions**, you normally see only the current version.
+
+---
+
+# 6. Rolling Back to an Older Version
+
+Suppose the current website says:
+
+```text
+I REALLY love coffee
+```
+
+but you want:
+
+```text
+I love coffee
+```
+
+With versioning, you can restore the older version.
+
+You can identify the previous version by enabling:
+
+```text
+Show versions
+```
+
+Then you can remove the unwanted current version or otherwise restore the desired version.
+
+---
+
+# 7. Permanent Delete of a Version
+
+When **Show versions** is enabled and you delete a specific version, you're deleting the actual version.
+
+This is a:
+
+> **Permanent delete**
+
+Example:
+
+```text
+index.html
+│
+├── Version 1
+└── Version 2  ← permanently delete
+```
+
+After permanently deleting Version 2:
+
+```text
+index.html
+│
+└── Version 1
+```
+
+### Important
+
+A specific version permanently deleted from S3 cannot be recovered through S3 versioning.
+
+---
+
+# 8. Normal Delete vs Permanent Delete
+
+This is one of the **most important concepts**.
+
+### Without selecting a specific version
+
+If you delete:
+
+```text
+coffee.jpg
+```
+
+S3 doesn't immediately delete the underlying object when versioning is enabled.
+
+Instead, S3 creates a:
+
+## Delete Marker
+
+```text
+coffee.jpg
+│
+├── Delete Marker ← current
+└── Previous version ← still exists
+```
+
+---
+
+# 9. What is a Delete Marker?
+
+A **Delete Marker** is a special version that tells S3:
+
+> "Treat this object as deleted."
+
+The previous object is still stored.
+
+Example:
+
+```text
+coffee.jpg
+
+Version 1
+   ↓
+Actual image
+
+Delete Marker
+   ↓
+Current version
+```
+
+Because the Delete Marker is now the current version, a normal request for:
+
+```text
+coffee.jpg
+```
+
+returns an object-not-found response.
+
+But the original version still exists underneath.
+
+---
+
+# 10. Delete Marker Example
+
+Before deletion:
+
+```text
+coffee.jpg
+   ↓
+Image exists
+```
+
+You click:
+
+```text
+Delete
+```
+
+S3 creates:
+
+```text
+coffee.jpg
+│
+├── Delete Marker ← current
+└── Version 1     ← actual image still exists
+```
+
+From the normal bucket view:
+
+```text
+coffee.jpg
+```
+
+appears to be gone.
+
+But with:
+
+```text
+Show versions
+```
+
+you can see:
+
+```text
+Delete Marker
+Version 1
+```
+
+---
+
+# 11. How to Restore a Deleted Object
+
+Because the original version wasn't actually deleted, you can restore it.
+
+### Step 1
+
+Enable:
+
+```text
+Show versions
+```
+
+### Step 2
+
+Find the **Delete Marker**.
+
+### Step 3
+
+Delete the Delete Marker **permanently**.
+
+Result:
+
+```text
+Before:
+
+coffee.jpg
+│
+├── Delete Marker ← current
+└── Version 1
+
+After deleting Delete Marker:
+
+coffee.jpg
+│
+└── Version 1 ← current
+```
+
+The previous version becomes the current version again.
+
+---
+
+# 12. Versioning Flow
+
+```text
+             S3 Versioning
+                  │
+                  ↓
+           Upload object
+                  │
+                  ↓
+            Version 1
+                  │
+          Upload same file
+                  │
+                  ↓
+            Version 2
+                  │
+          Delete object
+                  │
+                  ↓
+          Delete Marker
+                  │
+       Delete Delete Marker
+                  │
+                  ↓
+         Version 2 becomes
+            current again
+```
+
+---
+
+# 13. Versioning vs Delete
+
+| Operation               | What happens?                            |
+| ----------------------- | ---------------------------------------- |
+| Upload same object      | Creates a new version                    |
+| Update object           | Creates a new version                    |
+| Normal delete           | Creates a Delete Marker                  |
+| Delete specific version | Permanently deletes that version         |
+| Delete Delete Marker    | Restores the previous version            |
+| `Show versions`         | Displays all versions and Delete Markers |
+
+---
+
+# 14. Why Use S3 Versioning?
+
+### Accidental overwrite protection
+
+```text
+Old file
+   ↓
+New file uploaded
+   ↓
+Old version still available
+```
+
+### Accidental deletion protection
+
+```text
+Delete object
+     ↓
+Delete Marker
+     ↓
+Previous version still exists
+```
+
+### Website rollback
+
+```text
+Version 1 → Working website
+Version 2 → New website
+Version 3 → Buggy website
+
+        ↓
+
+Restore previous version
+```
+
+### Data recovery
+
+Versioning helps recover from accidental modifications or deletions.
+
+---
+
+# 15. Important Limitation
+
+Versioning does **not** mean that deleted versions are automatically gone forever.
+
+You can accumulate many versions:
+
+```text
+file.csv
+├── Version 1
+├── Version 2
+├── Version 3
+├── Version 4
+├── Version 5
+└── ...
+```
+
+All those versions can consume storage.
+
+Therefore, in real-world systems, **S3 Lifecycle Rules** are often used to manage old versions and control storage costs.
+
+---
+
+# ⭐ Exam / Interview Points
+
+1. **S3 Versioning keeps multiple versions of an object.**
+2. Enable it from **Bucket → Properties → Bucket Versioning**.
+3. Uploading the same object again creates a **new version**.
+4. Objects uploaded before versioning was enabled can have **Version ID = `null`**.
+5. **Show versions** lets you see all versions.
+6. Normal deletion creates a **Delete Marker**.
+7. A Delete Marker does **not** delete the underlying previous version.
+8. Deleting a specific version is a **permanent delete**.
+9. Deleting the Delete Marker can **restore the previous version**.
+10. Versioning is useful for **rollback and recovery**.
+11. Multiple versions consume storage, so **Lifecycle Rules** can help manage old versions.
+
+### 🧠 One-line mental model
+
+> **Upload = new version, normal delete = Delete Marker, permanent version delete = actually remove that version.**
+
+
+
 <img width="1412" height="684" alt="image" src="https://github.com/user-attachments/assets/30514c9c-4a5d-4f7b-8b54-3ef2bd4a1547" />
 
 
