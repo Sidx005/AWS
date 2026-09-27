@@ -26,8 +26,8 @@
 - Under **Block Public Access Settings**, keep **"Block all public access"** enabled
 - Leave **Bucket Versioning** disabled
 
+<img width="2875" height="1514" alt="image" src="https://github.com/user-attachments/assets/73b903f7-481c-4bd7-a29f-a797bbbaa30c" />
 
-<img width="2875" height="1514" alt="image" src="https://github.com/user-attachments/assets/cb8d8d3e-2522-4fb2-9ab7-7c88240de2e5" />
 
 - Review **Additional Settings**
 - Click **Create bucket**
