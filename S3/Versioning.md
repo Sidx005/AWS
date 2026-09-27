@@ -16,3 +16,20 @@
 
 <img width="1144" height="314" alt="image" src="https://github.com/user-attachments/assets/7232992e-9b86-441e-8ab2-e249677cc9d1" />
 
+
+
+## Disable Verisooning
+
+1. Create NEw Bucket
+<img width="1408" height="436" alt="image" src="https://github.com/user-attachments/assets/cf56980b-b07b-40cc-9157-f7e696c52a1c" />
+
+
+<img width="1216" height="562" alt="image" src="https://github.com/user-attachments/assets/8a5c2e2f-76aa-4212-929c-c3b8f7240bcf" />
+
+<img width="1436" height="362" alt="image" src="https://github.com/user-attachments/assets/c16b6e87-d322-435f-8556-763c42f7427e" />
+
+<img width="1138" height="274" alt="image" src="https://github.com/user-attachments/assets/59c838bb-5aac-48aa-9c22-3b96023eedea" />
+
+
+<img width="1144" height="214" alt="image" src="https://github.com/user-attachments/assets/5e6e6521-fbe6-4bfe-a1ba-ce4dab056a71" />
+
