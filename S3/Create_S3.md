@@ -26,7 +26,7 @@
 - Under **Block Public Access Settings**, keep **"Block all public access"** enabled
 - Leave **Bucket Versioning** disabled
 
-<img width="2875" height="1514" alt="image" src="https://github.com/user-attachments/assets/73b903f7-481c-4bd7-a29f-a797bbbaa30c" />
+<img width="2875" height="1514" alt="image" src="https://github.com/user-attachments/assets/9d5f422c-9869-47fe-a8a6-1a825808b663" />
 
 
 - Review **Additional Settings**
