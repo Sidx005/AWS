@@ -41,3 +41,18 @@
 - Under the **Buckets** section, locate your newly created bucket
 
 <img width="2874" height="794" alt="image" src="https://github.com/user-attachments/assets/234f2d5b-6ce6-42ec-bbb2-6f004bce3a05" />
+
+
+
+<img width="621" height="339" alt="image" src="https://github.com/user-attachments/assets/c7c2dc57-b5c1-417d-8c6d-ff7a40a4e800" />
+
+
+**Upload**
+<img width="614" height="320" alt="image" src="https://github.com/user-attachments/assets/453bd78c-5ee5-4d77-8e10-2296f52ae53e" />
+
+
+<img width="617" height="382" alt="image" src="https://github.com/user-attachments/assets/a6ea32da-f9f1-499b-96d1-b163b61ec60d" />
+
+<img width="509" height="347" alt="image" src="https://github.com/user-attachments/assets/eb82fad9-58fc-409f-a473-17762a49ca8b" />
+
+<img width="596" height="313" alt="image" src="https://github.com/user-attachments/assets/1bbb6488-e468-4e82-97da-52638a795a43" />
