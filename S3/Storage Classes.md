@@ -216,3 +216,18 @@ S3 Lifecycle configurations can automatically transition objects between storage
 | Archival, flexible waiting time | Glacier Flexible Retrieval |
 | Years of retention, lowest storage cost | Glacier Deep Archive |
 | Unknown or changing access patterns | Intelligent-Tiering |
+
+
+
+
+# Hands On
+
+## Create a bucket
+<img width="813" height="663" alt="image" src="https://github.com/user-attachments/assets/7c10f79a-408e-4799-8028-364fbce2e20c" />
+
+
+## Uploading Img
+<img width="761" height="552" alt="image" src="https://github.com/user-attachments/assets/969a568b-57a9-43fa-ad14-98cdf469e43f" />
+
+## Selecting Tiers
+<img width="967" height="623" alt="image" src="https://github.com/user-attachments/assets/eafc0358-4c2e-4c6c-9fe7-14f41683c7e5" />
