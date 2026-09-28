@@ -231,3 +231,23 @@ S3 Lifecycle configurations can automatically transition objects between storage
 
 ## Selecting Tiers
 <img width="967" height="623" alt="image" src="https://github.com/user-attachments/assets/eafc0358-4c2e-4c6c-9fe7-14f41683c7e5" />
+
+
+
+
+<img width="1103" height="497" alt="image" src="https://github.com/user-attachments/assets/06e609a4-4611-4ffb-9b47-5d9abeabf681" />
+
+
+
+## Create a lifecycle rules
+
+
+<img width="819" height="492" alt="image" src="https://github.com/user-attachments/assets/839fbdec-d63d-4869-9a14-d846f11763ed" />
+
+
+
+<img width="887" height="503" alt="image" src="https://github.com/user-attachments/assets/371df654-932c-433f-9135-421a9da041e9" />
+
+
+
+<img width="734" height="457" alt="image" src="https://github.com/user-attachments/assets/a4713751-833b-4468-a91a-a923b677862b" />
