@@ -472,3 +472,74 @@ For the detailed deployment comparison and configuration options:
 - [Deployment configuration options](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/command-options-general.html)
 
 **One-line summary:** Elastic Beanstalk deployment policies determine how application versions are updated, how much capacity remains available, how traffic is handled, and how failures are rolled back.
+
+
+
+
+## Hands On
+
+**1. Prod Environemt**
+<img width="1117" height="557" alt="image" src="https://github.com/user-attachments/assets/bd8f872f-d89c-4478-8f53-17bda402d76c" />
+
+
+<img width="405" height="285" alt="image" src="https://github.com/user-attachments/assets/cd4d3cd1-a792-4b79-a5ca-f5a40fe308a3" />
+
+<img width="410" height="281" alt="image" src="https://github.com/user-attachments/assets/2c60f45c-7082-46a4-b924-f49dfcda4cfb" />
+
+**2. Types:**
+<img width="454" height="105" alt="image" src="https://github.com/user-attachments/assets/a076dbf0-64aa-48dc-aeec-70363ea4aa9b" />
+
+
+**3. Going With Immutable**
+<img width="437" height="291" alt="image" src="https://github.com/user-attachments/assets/a2e4cb1a-9160-4088-bd91-0ffb13740332" />
+
+**4. Apply Changes**
+
+
+<img width="527" height="316" alt="image" src="https://github.com/user-attachments/assets/8fcb3e45-64c7-4898-bc20-3e23fe0d8e7a" />
+
+
+
+-------------
+
+## Appication Code in VS Code
+
+<img width="699" height="461" alt="image" src="https://github.com/user-attachments/assets/27c32923-bf70-411c-868c-6aa396f72176" />
+
+
+### Changing the bg color from yllow to blue (Minor change for testing depoyment)
+<img width="536" height="306" alt="image" src="https://github.com/user-attachments/assets/11abc9cc-deb8-4de8-bad3-26bb267897e2" />
+
+
+
+-----
+
+# Back To Beanstalk , Update & Deploy
+
+<img width="575" height="384" alt="image" src="https://github.com/user-attachments/assets/74136689-2662-4a57-a175-62ad661283a7" />
+
+
+<img width="597" height="371" alt="image" src="https://github.com/user-attachments/assets/b1d73f99-84e1-47d7-8cc9-1b822430bade" />
+
+
+## Events
+
+<img width="435" height="266" alt="image" src="https://github.com/user-attachments/assets/44856903-a318-4c76-b6bf-17a62b0eaf56" />
+
+
+
+## Checking
+1. Prod Environment
+<img width="594" height="357" alt="image" src="https://github.com/user-attachments/assets/9c48ecc4-5059-493a-81ae-16a1a30b851c" />
+
+2. Dev Environment
+<img width="590" height="299" alt="image" src="https://github.com/user-attachments/assets/38b0a5e5-bb8c-49a8-8933-a624964fbc23" />
+
+
+## Test (Cloning Environment)
+<img width="494" height="289" alt="image" src="https://github.com/user-attachments/assets/6ee01b79-5758-45dd-91e5-498b048ec33e" />
+
+ ### Swap Environment
+<img width="179" height="144" alt="image" src="https://github.com/user-attachments/assets/3a7b2dcd-dd1e-4d42-b61d-70dcac6b8d15" />
+
+<img width="820" height="552" alt="image" src="https://github.com/user-attachments/assets/3f472d93-03b1-4085-a5ce-6725fdf78817" />
